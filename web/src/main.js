@@ -415,6 +415,9 @@ function applyCopy(relayout = false) {
   document.getElementById("doorHint").textContent = p.doorEnter;
   document.getElementById("doorHint").setAttribute("aria-label", p.doorAria);
   document.getElementById("catalogBtn").textContent = p.catalogBtn;
+  document.getElementById("moreBtn").textContent = p.moreBtn;
+  document.getElementById("moreBtn").title = p.moreBtnTitle;
+  document.getElementById("moreBtn").setAttribute("aria-label", p.moreBtnTitle);
   document.getElementById("catalogStatus").textContent = p.catalogStatus;
   document.getElementById("closeCatalog").textContent = p.catalogClose;
   document.getElementById("closeReel").textContent = p.closeReel;
@@ -1122,22 +1125,44 @@ document.getElementById("qtyPlus").addEventListener("click", () => setQty(state.
 document.querySelectorAll("[data-qty]").forEach((btn) => {
   btn.addEventListener("click", () => setQty(Number(btn.dataset.qty)));
 });
+const more = document.getElementById("mastMore");
+const moreBtn = document.getElementById("moreBtn");
+
+function closeMore() {
+  more.classList.remove("open");
+  moreBtn.setAttribute("aria-expanded", "false");
+}
+
+moreBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  const open = !more.classList.contains("open");
+  more.classList.toggle("open", open);
+  moreBtn.setAttribute("aria-expanded", open ? "true" : "false");
+});
+document.addEventListener("click", (e) => {
+  if (!more.contains(e.target)) closeMore();
+});
+
 themeBtn.addEventListener("click", () => {
   state.night = !state.night;
   applyTheme();
   enableSound();
+  closeMore();
 });
 langBtn.addEventListener("click", () => {
   setLang(state.lang === "zh" ? "en" : "zh");
+  closeMore();
 });
 muteBtn.addEventListener("click", async () => {
   if (audio.muted || !audio.ready) {
     await enableSound();
     audio.bell();
+    closeMore();
     return;
   }
   audio.setMuted(true);
   muteBtn.textContent = pack().muteOn;
+  closeMore();
 });
 walk.addEventListener("input", () => setWalk((Number(walk.value) / 100) * MAX_WALK));
 walk.addEventListener("change", () => setWalk((Number(walk.value) / 100) * MAX_WALK));
@@ -1153,6 +1178,7 @@ document.getElementById("viewport").addEventListener(
 
 window.addEventListener("keydown", (e) => {
   if (e.key === "Escape") {
+    closeMore();
     closeRulesSheet();
     closeWalletSheet();
     return;

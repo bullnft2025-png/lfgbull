@@ -41,9 +41,14 @@
       <div class="mast-right">
         <span class="hour" id="hour">02:17</span>
         <span class="key" id="keyBadge" hidden>入廳</span>
-        <button id="langBtn" type="button" title="English">EN</button>
-        <button id="themeBtn" type="button">晝</button>
-        <button id="muteBtn" type="button">聲</button>
+        <div class="mast-more" id="mastMore">
+          <button type="button" id="moreBtn" aria-expanded="false" aria-haspopup="true" title="設定">⋯</button>
+          <div class="mast-more-panel" id="mastMorePanel">
+            <button id="langBtn" type="button" title="English">EN</button>
+            <button id="themeBtn" type="button">晝</button>
+            <button id="muteBtn" type="button">聲</button>
+          </div>
+        </div>
         <button id="catalogBtn" type="button">冊</button>
         <span class="demo" id="modeBadge">NOCTURNE</span>
         <button id="connectBtn" type="button">連接錢包</button>

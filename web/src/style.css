@@ -107,6 +107,24 @@ h1 {
   align-items: center;
 }
 
+.mast-more {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+#moreBtn {
+  display: none;
+  min-width: 2.6em;
+  letter-spacing: 0;
+}
+
+.mast-more-panel {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 #langBtn {
   min-width: 2.6em;
   padding-left: 10px;
@@ -1692,12 +1710,54 @@ body.day .secret-door.keyed {
     max-height: min(58vh, 520px);
     overflow: auto;
   }
+  .mast {
+    gap: 8px;
+    padding: 10px 12px;
+  }
   .mast-note {
     display: none;
+  }
+  .mast-right {
+    gap: 6px;
+    flex-shrink: 0;
   }
   .mast-right .hour,
   .mast-right .demo {
     display: none;
+  }
+  .mast-right button {
+    white-space: nowrap;
+    padding: 6px 8px;
+    font-size: 12px;
+  }
+  .mast-more {
+    position: relative;
+    gap: 0;
+  }
+  #moreBtn {
+    display: grid;
+    place-items: center;
+  }
+  .mast-more-panel {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    flex-direction: column;
+    gap: 0;
+    min-width: 108px;
+    padding: 6px;
+    background: #12080bf5;
+    border: 1px solid #5a3a1888;
+    box-shadow: 0 12px 28px #000a;
+    z-index: 8;
+  }
+  .mast-more.open .mast-more-panel {
+    display: flex;
+  }
+  .mast-more-panel button {
+    width: 100%;
+    justify-content: center;
   }
   .parlor {
     height: 42vh;
