@@ -6,3 +6,4 @@ layers/
 node_modules/
 web/node_modules/
 web/dist/
+.wrangler/
