@@ -1,0 +1,24 @@
+{
+  "name": "cow-people",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generate-from-art.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pin:images": "node pin-images.js",
+    "pin:metadata": "node pin-metadata.js",
+    "unrevealed": "node stage-unrevealed-media.js && node prepare-unrevealed.js",
+    "pin:unrevealed": "node pin-unrevealed.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "axios": "^1.20.0",
+    "form-data": "^4.0.6",
+    "ipfs-car": "^3.1.0",
+    "pinata": "^2.5.6",
+    "sharp": "^0.35.4"
+  }
+}

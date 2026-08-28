@@ -1,0 +1,8 @@
+output/
+layers/
+.env
+.env.*
+!.env.example
+node_modules/
+web/node_modules/
+web/dist/

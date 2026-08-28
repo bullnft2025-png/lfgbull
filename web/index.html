@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nocturne · Galerie BULL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="mast">
+      <div class="mast-left">
+        <span class="crest">BULL</span>
+        <div>
+          <p class="mast-kicker" id="mastKicker">Musée · Salle nocturne</p>
+          <h1>BULL</h1>
+        </div>
+      </div>
+      <p class="mast-note" id="whisper">燈已熄。只准持燭者入內。</p>
+      <div class="mast-right">
+        <span class="hour" id="hour">02:17</span>
+        <span class="key" id="keyBadge" hidden>入廳</span>
+        <button id="langBtn" type="button" title="English">EN</button>
+        <button id="themeBtn" type="button">晝</button>
+        <button id="muteBtn" type="button">聲</button>
+        <button id="catalogBtn" type="button">冊</button>
+        <span class="demo" id="modeBadge">NOCTURNE</span>
+        <button id="connectBtn" type="button">連接錢包</button>
+      </div>
+    </header>
+
+    <div class="viewport" id="viewport">
+      <div class="world" id="world">
+        <div class="ceiling"></div>
+        <div class="floor"></div>
+        <div class="moon-stripe"></div>
+        <div class="wall left"></div>
+        <div class="wall right"></div>
+        <div class="end-wall"></div>
+        <div class="haze"></div>
+        <div class="skylight"></div>
+        <div id="decor"></div>
+        <div id="hangings"></div>
+        <div id="ghosts"></div>
+        <button type="button" class="secret-door" id="secretDoor" aria-label="unmarked door"></button>
+        <button type="button" id="doorHint" class="door-hint" hidden aria-label="持有者包廂">進入</button>
+      </div>
+      <canvas id="dust" class="dust"></canvas>
+      <div class="moonbeam"></div>
+      <div class="vignette"></div>
+    </div>
+
+    <div class="walk-ui">
+      <p class="walk-latin" id="walkLatin">quod occultum est</p>
+      <label for="walk" id="walkLabel">深入長廊</label>
+      <input id="walk" type="range" min="0" max="100" value="8" />
+    </div>
+
+    <aside class="desk">
+      <p class="desk-kicker" id="deskKicker">Cabinet d’acquisition</p>
+      <div class="desk-head">
+        <h2 id="deskTitle">夜間獻納</h2>
+        <button type="button" id="rulesBtn" class="desk-rules-btn">規則</button>
+      </div>
+      <div class="desk-stats">
+        <div><span id="statOnce">單次</span><strong>0.0004 ETH</strong></div>
+        <div><span id="statOdds">機率</span><strong>10%</strong></div>
+        <div><span id="statLedger">夜簿</span><strong id="mintedLabel">0 / 10,000</strong></div>
+      </div>
+      <div class="qty">
+        <span id="qtyWord">數量</span>
+        <button id="qtyMinus" type="button" aria-label="減少數量">−</button>
+        <strong id="qtyLabel">1</strong>
+        <button id="qtyPlus" type="button" aria-label="增加數量">+</button>
+        <button type="button" data-qty="1">1</button>
+        <button type="button" data-qty="10">10</button>
+        <button type="button" data-qty="100">100</button>
+      </div>
+      <p class="qty-total"><span id="qtyTotalPrefix">合計</span> <em id="costLabel">0.0004 ETH</em></p>
+      <button id="pullBtn" type="button">連接錢包</button>
+      <p class="desk-seal" id="deskSeal">以蠟封為記</p>
+    </aside>
+
+    <aside class="ledger">
+      <p class="desk-kicker" id="ledgerKicker">Livre d’or</p>
+      <h3 id="ledgerTitle">夜間訪客簿</h3>
+      <p class="ledger-note" id="ledgerNote">紀錄錢包：誰獲得 · 誰未獲得</p>
+      <ol id="feed"></ol>
+    </aside>
+
+    <div id="inspect" class="inspect" hidden>
+      <figure>
+        <div class="inspect-frame">
+          <img id="inspectImg" alt="" />
+        </div>
+        <figcaption>
+          <p id="inspectInv"></p>
+          <p id="inspectTier"></p>
+          <h2 id="inspectTitle"></h2>
+          <p id="inspectLore" class="lore"></p>
+          <button id="closeInspect" type="button">將燭收回</button>
+        </figcaption>
+      </figure>
+    </div>
+
+    <p id="deny" class="deny" hidden></p>
+
+    <div id="salon" class="salon" hidden>
+      <div class="salon-room">
+        <p class="desk-kicker" id="salonKicker">Loge privée</p>
+        <h2 id="salonTitle">持有者包廂</h2>
+        <p class="salon-copy" id="salonCopy">畫已離框。點地板喚你的館藏過來；點角色近看。傳說級愛待在上席。</p>
+        <p class="salon-count" id="salonCount">今夜 0 席</p>
+
+        <div class="parlor" id="parlor">
+          <div class="parlor-wall">
+            <span class="parlor-sconce left"></span>
+            <span class="parlor-sconce right"></span>
+            <span class="parlor-dais"></span>
+          </div>
+          <div class="parlor-stage" id="parlorStage" role="application" aria-label="包廂廳。點地板喚角色，點角色近看。"></div>
+          <p class="parlor-hint" id="parlorHint">點地板，喚牠過來</p>
+        </div>
+
+        <section class="loge">
+          <h3 id="yourSeatsTitle">你的席</h3>
+          <div id="yourSeats" class="salon-chips"></div>
+        </section>
+
+        <button id="leaveSalon" type="button">退回長廊</button>
+      </div>
+    </div>
+
+    <div id="overlay" class="overlay" hidden>
+      <div class="rite-veil" id="riteVeil"></div>
+      <div class="reveal">
+        <p class="rite-kicker">Rite d’entrée</p>
+        <p id="reelStatus">館方正在審視你的獻納…</p>
+        <div class="reveal-frame" id="revealFrame">
+          <span class="rite-burst" aria-hidden="true"></span>
+          <img id="reelImg" alt="" />
+        </div>
+        <div id="hitStrip" class="hit-strip" hidden></div>
+        <div id="reelResult" hidden>
+          <p id="resultKicker"></p>
+          <h3 id="resultTitle"></h3>
+          <p id="resultLore" class="lore"></p>
+          <button id="closeReel" type="button">退下</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="catalog" class="catalog" hidden>
+      <div class="catalog-room">
+        <p class="rite-kicker">Catalogue · 10,000</p>
+        <p id="catalogStatus">左右移動滑鼠，查看每一張</p>
+        <div class="reveal-frame catalog-stage" id="catalogStage">
+          <img id="catalogImg" alt="" />
+        </div>
+        <div class="catalog-rail" id="catalogRail"><i id="catalogNeedle"></i></div>
+        <p id="catalogKicker" class="catalog-kicker">#0001 / 10,000</p>
+        <h3 id="catalogTitle">BULL #1</h3>
+        <p id="catalogLore" class="lore"></p>
+        <button id="closeCatalog" type="button">合上目錄</button>
+      </div>
+    </div>
+
+    <div id="rulesSheet" class="wallet-sheet rules-sheet" hidden>
+      <div class="wallet-sheet-room">
+        <p class="rite-kicker" id="rulesKicker">Règlement</p>
+        <h2 id="rulesTitle">獻納規則</h2>
+        <ul class="rules-list" id="rulesList">
+          <li>每次 <em>0.0004 ETH</em>（約 $1）</li>
+          <li>抽中機率 <em>10%</em></li>
+          <li>未中的 ETH 獻入館庫</li>
+          <li>單次最多 mint <em>100</em> 張</li>
+          <li>Ethereum 主網。錢包確認後，約等一個區塊（約 12 秒）</li>
+          <li>沒有 TGE 計畫，純粹牛回 NFT</li>
+          <li>手機請用 OKX、幣安或 MetaMask App 的瀏覽器打開本頁再 mint</li>
+        </ul>
+        <button id="closeRulesSheet" type="button">知道了</button>
+      </div>
+    </div>
+
+    <div id="walletSheet" class="wallet-sheet" hidden>
+      <div class="wallet-sheet-room">
+        <p class="rite-kicker">Connect</p>
+        <h2 id="walletTitle">選擇錢包</h2>
+        <p class="wallet-sheet-copy" id="walletCopy">手機請先在錢包 App 內打開本頁；或點下方用 App 開啟。</p>
+        <div class="wallet-list">
+          <button type="button" data-open="okx">OKX</button>
+          <button type="button" data-open="binance" id="walletBinance">幣安</button>
+          <button type="button" data-open="metamask">MetaMask</button>
+          <button type="button" data-open="injected" id="injectedWalletBtn">瀏覽器已安裝的錢包</button>
+        </div>
+        <button id="closeWalletSheet" type="button">取消</button>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

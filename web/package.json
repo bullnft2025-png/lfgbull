@@ -1,0 +1,17 @@
+{
+  "name": "cow-people-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host --port 5173",
+    "build": "vite build",
+    "preview": "vite preview --host --port 5173"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "ethers": "^6.17.0"
+  }
+}
