@@ -386,6 +386,9 @@ function applyCopy(relayout = false) {
   document.getElementById("mastKicker").textContent = p.kicker;
   document.getElementById("walkLatin").textContent = p.latin;
   document.getElementById("walkLabel").textContent = p.walk;
+  document.getElementById("walkHint").textContent = p.walkHint;
+  document.getElementById("walkBack").setAttribute("aria-label", p.walkBack);
+  document.getElementById("walkFwd").setAttribute("aria-label", p.walkFwd);
   document.getElementById("deskKicker").textContent = p.deskKicker;
   document.getElementById("deskTitle").textContent = p.deskTitle;
   document.getElementById("rulesBtn").textContent = p.rulesBtn;
@@ -1056,6 +1059,7 @@ async function enableSound() {
 
 function bindInspect(root) {
   root.addEventListener("click", (e) => {
+    if (walkGesture.moved > 10) return;
     const btn = e.target.closest(".hanging, .seat");
     if (!btn || btn.classList.contains("empty")) return;
     if (btn.id === "secretDoor") return;
@@ -1141,6 +1145,31 @@ muteBtn.addEventListener("click", async () => {
 });
 walk.addEventListener("input", () => setWalk((Number(walk.value) / 100) * MAX_WALK));
 walk.addEventListener("change", () => setWalk((Number(walk.value) / 100) * MAX_WALK));
+document.getElementById("walkBack").addEventListener("click", () => setWalk(state.walk - 140));
+document.getElementById("walkFwd").addEventListener("click", () => setWalk(state.walk + 140));
+
+const walkGesture = { y: 0, moved: 0, active: false };
+const viewportEl = document.getElementById("viewport");
+viewportEl.addEventListener("pointerdown", (e) => {
+  if (e.pointerType === "mouse" && e.button !== 0) return;
+  if (e.target.closest("button, input, label, a")) return;
+  walkGesture.active = true;
+  walkGesture.y = e.clientY;
+  walkGesture.moved = 0;
+});
+viewportEl.addEventListener("pointermove", (e) => {
+  if (!walkGesture.active) return;
+  const dy = walkGesture.y - e.clientY;
+  walkGesture.y = e.clientY;
+  walkGesture.moved += Math.abs(dy);
+  setWalk(state.walk + dy * 2.6);
+});
+const endWalkGesture = () => {
+  walkGesture.active = false;
+};
+viewportEl.addEventListener("pointerup", endWalkGesture);
+viewportEl.addEventListener("pointercancel", endWalkGesture);
+viewportEl.addEventListener("pointerleave", endWalkGesture);
 
 document.getElementById("viewport").addEventListener(
   "wheel",
