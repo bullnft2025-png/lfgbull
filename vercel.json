@@ -1,0 +1,9 @@
+{
+  "buildCommand": "cd drama-app && npm install && npm run build",
+  "outputDirectory": "drama-app/dist",
+  "installCommand": "cd drama-app && npm install",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
