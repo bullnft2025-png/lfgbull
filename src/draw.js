@@ -276,6 +276,85 @@ function drawEyes(px, name, furName) {
     px.set(17, 13, CYAN);
     return;
   }
+  if (name === "X Eyes") {
+    px.fillRect(14, 12, 5, 4, WHITE);
+    px.set(15, 13, BLACK);
+    px.set(17, 13, BLACK);
+    px.set(16, 14, BLACK);
+    px.set(15, 15, BLACK);
+    px.set(17, 15, BLACK);
+    return;
+  }
+  if (name === "Heart Eyes") {
+    px.fillRect(14, 12, 5, 4, WHITE);
+    px.set(15, 13, PINK);
+    px.set(16, 13, PINK);
+    px.set(17, 13, PINK);
+    px.set(14, 14, PINK);
+    px.set(15, 14, PINK);
+    px.set(16, 14, PINK);
+    px.set(17, 14, PINK);
+    px.set(18, 14, PINK);
+    px.set(15, 15, PINK);
+    px.set(16, 15, PINK);
+    px.set(17, 15, PINK);
+    px.set(16, 16, PINK);
+    return;
+  }
+  if (name === "Star Eyes") {
+    px.fillRect(14, 12, 5, 4, WHITE);
+    px.set(16, 13, GOLD);
+    px.set(15, 14, GOLD);
+    px.set(16, 14, GOLD);
+    px.set(17, 14, GOLD);
+    px.set(16, 15, GOLD);
+    return;
+  }
+  if (name === "Money Eyes") {
+    px.fillRect(14, 12, 5, 4, WHITE);
+    px.set(15, 13, hex("#3DDC84"));
+    px.set(16, 13, hex("#3DDC84"));
+    px.set(17, 13, hex("#3DDC84"));
+    px.set(15, 14, hex("#3DDC84"));
+    px.set(17, 14, hex("#3DDC84"));
+    px.set(15, 15, hex("#3DDC84"));
+    px.set(16, 15, hex("#3DDC84"));
+    px.set(17, 15, hex("#3DDC84"));
+    return;
+  }
+  if (name === "Spiral Eyes") {
+    px.fillRect(14, 12, 5, 4, WHITE);
+    px.set(16, 13, BLACK);
+    px.set(17, 13, BLACK);
+    px.set(15, 14, BLACK);
+    px.set(17, 14, BLACK);
+    px.set(15, 15, BLACK);
+    px.set(16, 15, BLACK);
+    return;
+  }
+  if (name === "Flame Eyes") {
+    px.fillRect(14, 12, 5, 4, hex("#FF7A18"));
+    px.set(15, 12, hex("#FFE566"));
+    px.set(17, 12, hex("#FFE566"));
+    px.set(16, 13, hex("#FFE566"));
+    px.set(15, 14, RED);
+    px.set(17, 14, RED);
+    px.set(16, 15, RED);
+    return;
+  }
+  if (name === "Rainbow Eyes") {
+    px.fillRect(14, 12, 5, 4, WHITE);
+    px.set(15, 13, hex("#FF3B3B"));
+    px.set(16, 13, hex("#FF7A18"));
+    px.set(17, 13, GOLD);
+    px.set(15, 14, hex("#3DDC84"));
+    px.set(16, 14, CYAN);
+    px.set(17, 14, hex("#C5A3FF"));
+    px.set(15, 15, hex("#FF5AB3"));
+    px.set(16, 15, hex("#3DE0FF"));
+    px.set(17, 15, hex("#7DFFB3"));
+    return;
+  }
 
   const frames = {
     "Black Shades": BLACK,

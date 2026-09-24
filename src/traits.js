@@ -25,10 +25,10 @@ const LAYERS = {
     legendary: ["Rainbow"],
   },
   Eyes: {
-    common: ["Normal", "Black Shades", "Pink Goggles", "Cyan Goggles"],
-    uncommon: ["Gold Goggles", "White Visor", "Red Visor", "Eye Patch"],
-    rare: ["3D Glasses", "Sleepy"],
-    legendary: ["Laser", "Diamond Eyes"],
+    common: ["Normal", "Black Shades", "Pink Goggles", "Cyan Goggles", "X Eyes"],
+    uncommon: ["Gold Goggles", "White Visor", "Red Visor", "Eye Patch", "Heart Eyes", "Star Eyes", "Money Eyes"],
+    rare: ["3D Glasses", "Sleepy", "Spiral Eyes", "Flame Eyes"],
+    legendary: ["Laser", "Diamond Eyes", "Rainbow Eyes"],
   },
   Headwear: {
     common: ["None", "White Hoodie", "Black Hoodie", "Pink Beanie", "Blue Beanie", "Gray Beanie"],
