@@ -1,0 +1,302 @@
+.paywall-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+  overflow-y: auto;
+}
+
+.paywall-modal {
+  background: var(--bg-card);
+  border-radius: 24px;
+  max-width: 900px;
+  width: 100%;
+  padding: 48px 40px;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.4s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.paywall-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.paywall-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.paywall-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.paywall-lock-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.paywall-header h2 {
+  font-size: 32px;
+  margin-bottom: 12px;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.paywall-header p {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.paywall-plans {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.paywall-plan {
+  background: var(--bg-hover);
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  padding: 32px 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.paywall-plan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.paywall-plan:hover {
+  border-color: var(--primary-color);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(231, 76, 60, 0.3);
+}
+
+.paywall-plan.selected {
+  border-color: var(--primary-color);
+  background: rgba(231, 76, 60, 0.1);
+  box-shadow: 0 8px 24px rgba(231, 76, 60, 0.4);
+}
+
+.paywall-plan.selected::before {
+  transform: scaleX(1);
+}
+
+.plan-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--gradient-primary);
+  color: white;
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.plan-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.paywall-plan h3 {
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.plan-price {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.plan-price .price {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.plan-price .period {
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+.plan-savings {
+  font-size: 14px;
+  color: #f39c12;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.plan-features {
+  list-style: none;
+  margin-bottom: 24px;
+}
+
+.plan-features li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.check-icon {
+  color: #27ae60;
+  flex-shrink: 0;
+}
+
+.plan-radio {
+  display: flex;
+  justify-content: center;
+}
+
+.radio {
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.radio.checked {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+}
+
+.radio-dot {
+  width: 10px;
+  height: 10px;
+  background: white;
+  border-radius: 50%;
+}
+
+.paywall-subscribe-btn {
+  width: 100%;
+  padding: 18px;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(231, 76, 60, 0.4);
+}
+
+.paywall-subscribe-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(231, 76, 60, 0.6);
+}
+
+.paywall-subscribe-btn:active {
+  transform: translateY(0);
+}
+
+.paywall-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .paywall-modal {
+    padding: 32px 24px;
+    margin: 20px;
+  }
+
+  .paywall-header h2 {
+    font-size: 24px;
+  }
+
+  .paywall-lock-icon {
+    font-size: 48px;
+  }
+
+  .paywall-plans {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .paywall-plan {
+    padding: 24px 20px;
+  }
+
+  .plan-price .price {
+    font-size: 28px;
+  }
+
+  .paywall-subscribe-btn {
+    padding: 16px;
+    font-size: 16px;
+  }
+}
