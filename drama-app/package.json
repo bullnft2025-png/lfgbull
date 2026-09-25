@@ -1,7 +1,7 @@
 {
-  "name": "red-fruit-drama",
-  "version": "1.0.0",
-  "description": "紅果短劇 - Red Fruit Short Drama App",
+  "name": "cool-drama",
+  "version": "2.0.0",
+  "description": "爽劇 - Cool Drama App",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Hero from './components/Hero';
 import DramaCard from './components/DramaCard';
 import VideoPlayer from './components/VideoPlayer';
+import PaywallModal from './components/PaywallModal';
 import { dramaData } from './data/dramaData';
 import { ChevronRight } from 'lucide-react';
 import './App.css';
@@ -10,6 +11,8 @@ import './App.css';
 function App() {
   const [selectedDrama, setSelectedDrama] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [showPaywall, setShowPaywall] = useState(false);
+  const [membershipPlan, setMembershipPlan] = useState(null); // null, 'vip', 'vvip'
 
   const handlePlayDrama = (drama) => {
     setSelectedDrama(drama);
@@ -23,6 +26,20 @@ function App() {
     setSearchQuery(query);
     console.log('Searching for:', query);
   };
+
+  const handlePaywallTrigger = () => {
+    setShowPaywall(true);
+  };
+
+  const handleSubscribe = (plan) => {
+    console.log('訂閱方案:', plan);
+    // 這裡可以整合實際的支付流程
+    alert(`感謝訂閱 ${plan.name}！\n價格: ${plan.price}\n\n這是展示版本，實際應用需要整合支付系統。`);
+    setMembershipPlan(plan.id);
+    setShowPaywall(false);
+  };
+
+  const isMember = membershipPlan !== null;
 
   return (
     <div className="app">
@@ -59,21 +76,21 @@ function App() {
         <footer className="footer">
           <div className="footer-content">
             <div className="footer-logo">
-              <h3>紅果短劇</h3>
+              <h3>爽劇</h3>
               <p>精彩短劇，隨時隨地觀看</p>
             </div>
             <div className="footer-links">
               <div className="footer-column">
                 <h4>關於我們</h4>
-                <a href="#about">關於紅果</a>
+                <a href="#about">關於爽劇</a>
                 <a href="#contact">聯繫我們</a>
                 <a href="#careers">加入我們</a>
               </div>
               <div className="footer-column">
-                <h4>幫助中心</h4>
-                <a href="#faq">常見問題</a>
-                <a href="#feedback">意見反饋</a>
-                <a href="#support">技術支持</a>
+                <h4>會員服務</h4>
+                <a href="#vip">VIP 會員</a>
+                <a href="#vvip">VVIP 會員</a>
+                <a href="#payment">付款方式</a>
               </div>
               <div className="footer-column">
                 <h4>法律信息</h4>
@@ -84,13 +101,30 @@ function App() {
             </div>
           </div>
           <div className="footer-bottom">
-            <p>&copy; 2024 紅果短劇 Red Fruit Drama. All rights reserved.</p>
+            <p>&copy; 2024 爽劇 Cool Drama. All rights reserved.</p>
+            {isMember && (
+              <p className="member-badge">
+                ✨ 您是 {membershipPlan === 'vvip' ? 'VVIP' : 'VIP'} 會員
+              </p>
+            )}
           </div>
         </footer>
       </main>
 
       {selectedDrama && (
-        <VideoPlayer drama={selectedDrama} onClose={handleClosePlayer} />
+        <VideoPlayer 
+          drama={selectedDrama} 
+          onClose={handleClosePlayer}
+          onPaywallTrigger={handlePaywallTrigger}
+          isMember={isMember}
+        />
+      )}
+
+      {showPaywall && (
+        <PaywallModal
+          onClose={() => setShowPaywall(false)}
+          onSubscribe={handleSubscribe}
+        />
       )}
     </div>
   );

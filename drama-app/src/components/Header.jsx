@@ -27,8 +27,8 @@ const Header = ({ onSearch }) => {
           <div className="logo-icon">
             <Play size={24} fill="white" />
           </div>
-          <span className="logo-text">紅果短劇</span>
-          <span className="logo-subtitle">Red Fruit</span>
+          <span className="logo-text">爽劇</span>
+          <span className="logo-subtitle">Cool Drama</span>
         </div>
 
         <nav className={`header-nav ${isMenuOpen ? 'active' : ''}`}>

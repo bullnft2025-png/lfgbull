@@ -132,6 +132,13 @@
   font-size: 14px;
 }
 
+.member-badge {
+  margin-top: 8px;
+  color: var(--primary-color);
+  font-weight: 600;
+  animation: pulse 2s ease infinite;
+}
+
 @media (max-width: 1024px) {
   .category-section {
     padding: 40px 32px;
